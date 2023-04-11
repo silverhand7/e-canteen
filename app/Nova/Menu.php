@@ -3,19 +3,20 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Image;
 
-class Cashier extends Resource
+class Menu extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Cashier>
+     * @var class-string<\App\Models\Menu>
      */
-    public static $model = \App\Models\Cashier::class;
+    public static $model = \App\Models\Menu::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -30,12 +31,12 @@ class Cashier extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name',
+        'id', 'name', 'category'
     ];
 
     public static function label()
     {
-        return "Kasir";
+        return "Menu";
     }
 
     /**
@@ -50,12 +51,11 @@ class Cashier extends Resource
             ID::make()->sortable(),
             Text::make('Nama', 'name')
                 ->rules('required', 'max:255'),
-            Text::make('Username')
-                ->rules('required', 'max:10')
-                ->creationRules('unique:cashiers,username')
-                ->updateRules('unique:cashiers,username,{{resourceId}}'),
-            Password::make('Password')
+            Text::make('Kategory', 'category')
+                ->rules('required', 'max:255'),
+            Currency::make('Harga', 'price')
                 ->rules('required'),
+            Image::make('Gambar', 'image')->disk('public')->path('images'),
         ];
     }
 
@@ -101,10 +101,5 @@ class Cashier extends Resource
     public function actions(NovaRequest $request)
     {
         return [];
-    }
-
-    public function authorizedToReplicate(Request $request)
-    {
-        return false;
     }
 }

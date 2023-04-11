@@ -4,18 +4,17 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 
-class Cashier extends Resource
+class Place extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Cashier>
+     * @var class-string<\App\Models\Place>
      */
-    public static $model = \App\Models\Cashier::class;
+    public static $model = \App\Models\Place::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -35,7 +34,7 @@ class Cashier extends Resource
 
     public static function label()
     {
-        return "Kasir";
+        return "Tempat";
     }
 
     /**
@@ -50,12 +49,6 @@ class Cashier extends Resource
             ID::make()->sortable(),
             Text::make('Nama', 'name')
                 ->rules('required', 'max:255'),
-            Text::make('Username')
-                ->rules('required', 'max:10')
-                ->creationRules('unique:cashiers,username')
-                ->updateRules('unique:cashiers,username,{{resourceId}}'),
-            Password::make('Password')
-                ->rules('required'),
         ];
     }
 
