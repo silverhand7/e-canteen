@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
@@ -16,6 +17,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+        $this->loadViewsFrom(__DIR__.'/../resources/views/vendor/nova', 'nova');
     }
 
     /**
@@ -27,7 +29,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         Nova::routes()
                 ->withAuthenticationRoutes()
-                ->withPasswordResetRoutes()
+                //->withPasswordResetRoutes()
                 ->register();
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\LoginController as AdminLoginController;
+use App\Http\Controllers\Cashier\LoginController as CashierLoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::post(config()->get('nova')['path'] . '/login', [CashierLoginController::class, 'authLogin']);

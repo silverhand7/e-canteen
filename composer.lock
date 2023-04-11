@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f6364334bea32ceb1d1084d891675a1f",
+    "content-hash": "45c0ad08255674567f45e3399941f62b",
     "packages": [
         {
             "name": "brick/math",
@@ -6861,6 +6861,61 @@
                 }
             ],
             "time": "2023-03-08T13:26:56+00:00"
+        },
+        {
+            "name": "norman-huth/nova-assets-changer",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Muetze42/nova-assets-changer.git",
+                "reference": "7ae46c2a77161fe535f94e686f5906c8afe4be28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Muetze42/nova-assets-changer/zipball/7ae46c2a77161fe535f94e686f5906c8afe4be28",
+                "reference": "7ae46c2a77161fe535f94e686f5906c8afe4be28",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.5.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NormanHuth\\NovaAssetsChanger\\PackageServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NormanHuth\\NovaAssetsChanger\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Norman Huth",
+                    "homepage": "https://huth.it"
+                }
+            ],
+            "description": "Change Nova resources",
+            "homepage": "https://github.com/Muetze42/nova-assets-changer",
+            "keywords": [
+                "laravel",
+                "laravel-nova",
+                "nova",
+                "nova-4"
+            ],
+            "support": {
+                "docs": "https://github.com/Muetze42/nova-assets-changer#readme",
+                "issues": "https://github.com/Muetze42/nova-assets-changer/issues",
+                "source": "https://github.com/Muetze42/nova-assets-changer"
+            },
+            "time": "2022-12-14T10:58:24+00:00"
         },
         {
             "name": "nunomaduro/collision",
