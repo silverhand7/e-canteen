@@ -25,7 +25,7 @@ class Cashier extends Authenticatable
     protected function password(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => $value,
+            get: fn (string|null $value) => $value,
             set: fn (string $value) => bcrypt($value),
         );
     }
