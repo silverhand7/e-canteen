@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45c0ad08255674567f45e3399941f62b",
+    "content-hash": "f14f027335f2a71f17c72b364cfc1908",
     "packages": [
         {
             "name": "brick/math",
@@ -1449,6 +1449,57 @@
                 }
             ],
             "time": "2023-01-17T01:02:51+00:00"
+        },
+        {
+            "name": "kirschbaum-development/nova-inline-relationship",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kirschbaum-development/nova-inline-relationship.git",
+                "reference": "94c92a47f075ec00192b2344124412d3018f9d61"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kirschbaum-development/nova-inline-relationship/zipball/94c92a47f075ec00192b2344124412d3018f9d61",
+                "reference": "94c92a47f075ec00192b2344124412d3018f9d61",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "laravel/nova": "4.2",
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "^7.4",
+                "phpunit/phpunit": "^9.5.10"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "KirschbaumDevelopment\\NovaInlineRelationship\\NovaInlineRelationshipServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "KirschbaumDevelopment\\NovaInlineRelationship\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field for displaying relationship properties inline.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/kirschbaum-development/nova-inline-relationship/issues",
+                "source": "https://github.com/kirschbaum-development/nova-inline-relationship/tree/2.0.0"
+            },
+            "time": "2023-02-15T18:02:23+00:00"
         },
         {
             "name": "laravel/framework",
