@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
@@ -17,7 +18,16 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+        Nova::withoutNotificationCenter();
+        Nova::style('custom-css', asset('css/custom.css'));
         $this->loadViewsFrom(__DIR__.'/../resources/views/vendor/nova', 'nova');
+        Nova::footer(function ($request) {
+            return Blade::render('
+                <div class="mt-8 leading-normal text-xs text-gray-500 space-y-1">
+                    <p class="text-center">© ' . date('Y') . ' – E-Canteen</p>
+                </div>
+            ');
+        });
     }
 
     /**
