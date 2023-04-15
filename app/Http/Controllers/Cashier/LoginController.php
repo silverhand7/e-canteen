@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cashier;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Nova;
 
 class LoginController extends \Laravel\Nova\Http\Controllers\LoginController
 {
@@ -16,5 +17,10 @@ class LoginController extends \Laravel\Nova\Http\Controllers\LoginController
     public function username()
     {
         return 'username';
+    }
+
+    public function redirectPath()
+    {
+        return Nova::url('/resources/cashiers');
     }
 }

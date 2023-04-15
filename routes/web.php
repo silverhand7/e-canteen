@@ -22,5 +22,4 @@ Route::get('/', function () {
 Route::get(config('nova')['path'].'/redirect/order/{id}', [CustomOrderController::class, 'updateTotal'])->name('order.update.total');
 Route::get(config('nova')['path'].'/redirect/order-detail/{id}', [CustomOrderController::class, 'updateTotalFromOrderDetail'])->name('order.update.total');
 
-
 Route::post(config()->get('nova')['path'] . '/login', [CashierLoginController::class, 'authLogin']);

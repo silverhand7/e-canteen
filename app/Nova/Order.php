@@ -66,7 +66,7 @@ class Order extends Resource
             Currency::make('Total')->exceptOnForms(),
             BelongsTo::make('Cashier', 'Cashier', Cashier::class)->default(function(){
                 return auth()->guard('web')->user()->id;
-            }),
+            })->hideFromIndex(),
 
             HasMany::make('Order Details', 'orderDetails', OrderDetail::class),
 
