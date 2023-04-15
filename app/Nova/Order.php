@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Handleglobal\NestedForm\NestedForm;
 
 class Order extends Resource
 {
@@ -53,7 +54,9 @@ class Order extends Resource
                 return auth()->guard('web')->user()->id;
             }),
 
-            HasMany::make('Order Details', 'orderDetails', OrderDetail::class)->inline(),
+            HasMany::make('Order Details', 'orderDetails', OrderDetail::class),
+
+            NestedForm::make('Order Details', 'orderDetails'),
         ];
     }
 

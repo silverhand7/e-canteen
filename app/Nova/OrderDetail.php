@@ -10,6 +10,8 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class OrderDetail extends Resource
 {
+    public static $displayInNavigation = false;
+
     /**
      * The model the resource corresponds to.
      *
@@ -30,7 +32,7 @@ class OrderDetail extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'order', 'menu'
+        'id', 'menu_id'
     ];
 
     /**
@@ -43,7 +45,7 @@ class OrderDetail extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Order'),
+            BelongsTo::make('Order')->hideWhenCreating()->hideWhenUpdating(),
             BelongsTo::make('Menu'),
             Number::make('Qty'),
         ];
@@ -91,5 +93,15 @@ class OrderDetail extends Resource
     public function actions(NovaRequest $request)
     {
         return [];
+    }
+
+    public static function redirectAfterCreate(NovaRequest $request, $resource)
+    {
+        return '/resources/orders/'.$resource->order->id;
+    }
+
+    public static function redirectAfterUpdate(NovaRequest $request, $resource)
+    {
+        return '/resources/orders/'.$resource->order->id;
     }
 }

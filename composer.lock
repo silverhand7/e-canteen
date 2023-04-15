@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f14f027335f2a71f17c72b364cfc1908",
+    "content-hash": "f1ce61fbd9715076e0f1ada750d603fe",
     "packages": [
         {
             "name": "brick/math",
@@ -1377,6 +1377,72 @@
                 }
             ],
             "time": "2021-10-07T12:57:01+00:00"
+        },
+        {
+            "name": "handleglobal/nova-nested-form",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/handleglobal/laravel-nova-nested-form.git",
+                "reference": "40cc5ee4032a530f4a868d3cc0856a399117034f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/handleglobal/laravel-nova-nested-form/zipball/40cc5ee4032a530f4a868d3cc0856a399117034f",
+                "reference": "40cc5ee4032a530f4a868d3cc0856a399117034f",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.17",
+                "php": ">=8.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Handleglobal\\NestedForm\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Handleglobal\\NestedForm\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Buchkovsky",
+                    "email": "buch@procoders.tech",
+                    "homepage": "https://procoders.tech"
+                },
+                {
+                    "name": "Ardit Qerosi",
+                    "email": "qerosi@proverstka.tech",
+                    "homepage": "https://procoders.tech"
+                }
+            ],
+            "description": "A Laravel Nova package that allows you to create/update/delete nested related fields from a parent form.",
+            "homepage": "https://handleglobal.com",
+            "keywords": [
+                "form",
+                "laravel",
+                "nested",
+                "nova",
+                "nova 4",
+                "relationship"
+            ],
+            "support": {
+                "docs": "https://github.com/handleglobal/laravel-nova-nested-form#readme",
+                "email": "buch@procoders.tech",
+                "issues": "https://github.com/handleglobal/laravel-nova-nested-form/issues",
+                "source": "https://github.com/handleglobal/laravel-nova-nested-form"
+            },
+            "time": "2023-01-09T23:11:06+00:00"
         },
         {
             "name": "inertiajs/inertia-laravel",
@@ -8924,7 +8990,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "handleglobal/nova-nested-form": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
