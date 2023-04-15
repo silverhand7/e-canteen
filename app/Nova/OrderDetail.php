@@ -4,19 +4,18 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Order extends Resource
+class OrderDetail extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Order>
+     * @var class-string<\App\Models\OrderDetail>
      */
-    public static $model = \App\Models\Order::class;
+    public static $model = \App\Models\OrderDetail::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -31,7 +30,7 @@ class Order extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'buyer', 'cashier',
+        'id', 'order', 'menu'
     ];
 
     /**
@@ -44,16 +43,9 @@ class Order extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Pembeli', 'Buyer', Buyer::class),
-            BelongsTo::make('Tempat', 'Place', Place::class),
-            Image::make('Bukti Pembayaran', 'proof_of_payment')
-                ->disk('public')
-                ->path('proof_of_payment'),
-            BelongsTo::make('Cashier', 'Cashier', Cashier::class)->default(function(){
-                return auth()->guard('web')->user()->id;
-            }),
-
-            HasMany::make('Order Details', 'orderDetails', OrderDetail::class)->inline(),
+            BelongsTo::make('Order'),
+            BelongsTo::make('Menu'),
+            Number::make('Qty'),
         ];
     }
 
@@ -99,10 +91,5 @@ class Order extends Resource
     public function actions(NovaRequest $request)
     {
         return [];
-    }
-
-    public function authorizedToReplicate(Request $request)
-    {
-        return false;
     }
 }
