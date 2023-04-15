@@ -9,6 +9,9 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Handleglobal\NestedForm\NestedForm;
+use Illuminate\Database\Eloquent\Model;
+use Laravel\Nova\Fields\Currency;
+use Laravel\Nova\Fields\Select;
 
 class Order extends Resource
 {
@@ -50,13 +53,24 @@ class Order extends Resource
             Image::make('Bukti Pembayaran', 'proof_of_payment')
                 ->disk('public')
                 ->path('proof_of_payment'),
+            Select::make('Status')
+                ->options([
+                    'pending' => 'pending',
+                    'paid' => 'paid',
+                    'on progress' => 'on progress',
+                    'done' => 'done',
+                    'canceled' => 'canceled',
+                ])
+                ->default('pending')
+                ->rules('required'),
+            Currency::make('Total')->exceptOnForms(),
             BelongsTo::make('Cashier', 'Cashier', Cashier::class)->default(function(){
                 return auth()->guard('web')->user()->id;
             }),
 
             HasMany::make('Order Details', 'orderDetails', OrderDetail::class),
 
-            NestedForm::make('Order Details', 'orderDetails'),
+            NestedForm::make('Order Details', 'orderDetails')->heading('Menu Item'),
         ];
     }
 
@@ -107,5 +121,41 @@ class Order extends Resource
     public function authorizedToReplicate(Request $request)
     {
         return false;
+    }
+
+    public static function redirectAfterCreate(NovaRequest $request, $resource)
+    {
+        return 'redirect/order/'.$resource->id;
+    }
+
+    public static function redirectAfterUpdate(NovaRequest $request, $resource)
+    {
+        return 'redirect/order/'.$resource->id;
+    }
+
+    public static function afterCreate(NovaRequest $request, Model $model)
+    {
+        // $model->orderDetails;
+        // $total = 0;
+
+        // foreach ($model->orderDetails as $orderDetail) {
+        //     $total += $orderDetail->menu->price * $orderDetail->qty;
+        // }
+
+        // \App\Models\Order::find($model->id)->update([
+        //     'total' => 10,
+        // ]);
+    }
+
+    public static function afterUpdate(NovaRequest $request, Model $model)
+    {
+        // $total = 0;
+        // foreach ($model->orderDetails as $orderDetail) {
+        //     $total += $orderDetail->menu->price * $orderDetail->qty;
+        // }
+
+        // \App\Models\Order::find($model->id)->update([
+        //     'total' => $total
+        // ]);
     }
 }

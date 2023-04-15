@@ -97,11 +97,21 @@ class OrderDetail extends Resource
 
     public static function redirectAfterCreate(NovaRequest $request, $resource)
     {
-        return '/resources/orders/'.$resource->order->id;
+        return 'redirect/order-detail/'.$resource->id;
     }
 
     public static function redirectAfterUpdate(NovaRequest $request, $resource)
     {
-        return '/resources/orders/'.$resource->order->id;
+        return 'redirect/order-detail/'.$resource->id;
+    }
+
+    public static function redirectAfterDelete(NovaRequest $request)
+    {
+        return 'redirect/order/'.$request->viaResourceId;
+    }
+
+    public function authorizedToReplicate(Request $request)
+    {
+        return false;
     }
 }

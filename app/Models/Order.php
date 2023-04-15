@@ -15,6 +15,7 @@ class Order extends Model
         'place_id',
         'proof_of_payment',
         'total',
+        'status',
         'note'
     ];
 
