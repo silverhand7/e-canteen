@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'cashiers',
         ],
+        'buyer' => [
+            'driver' => 'session',
+            'provider' => 'buyers',
+        ],
     ],
 
     /*
@@ -68,7 +72,12 @@ return [
         'cashiers' => [
             'driver' => 'eloquent',
             'model' => App\Models\Cashier::class,
-        ]
+        ],
+
+        'buyers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Buyer::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',

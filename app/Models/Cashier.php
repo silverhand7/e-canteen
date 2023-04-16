@@ -26,7 +26,6 @@ class Cashier extends Authenticatable
     {
         return Attribute::make(
             get: fn (string|null $value) => $value,
-            set: fn (string $value) => bcrypt($value),
         );
     }
 }
