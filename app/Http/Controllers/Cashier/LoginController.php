@@ -18,9 +18,4 @@ class LoginController extends \Laravel\Nova\Http\Controllers\LoginController
     {
         return 'username';
     }
-
-    public function redirectPath()
-    {
-        return Nova::url('/resources/cashiers');
-    }
 }

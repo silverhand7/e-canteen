@@ -2,7 +2,9 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "build-dashboard": "cd nova-components/Dashboard && npm run dev",
+        "build-dashboard-prod": "cd nova-components/Dashboard && npm run prod"
     },
     "devDependencies": {
         "axios": "^1.1.2",

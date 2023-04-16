@@ -163,7 +163,7 @@ return [
     */
 
     'brand' => [
-        'logo' => public_path('/img/E-Canteen.svg'),
+        'logo' => public_path('/img/stikomers-canteen.svg'),
 
     //     'colors' => [
     //         "400" => "24, 182, 155, 0.5",
