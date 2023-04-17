@@ -5,12 +5,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h2>Login Pembeli</h2>
-                        <form @submit.prevent="loginForm.post('login')">
+                        <form @submit.prevent="submit">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input v-model="loginForm.email" type="text" class="form-control" id="username" placeholder="Enter email">
-                                <div v-if="errors.email" class="text-danger">
-                                    {{ errors.email }}
+                                <input v-model="loginForm.username" type="text" class="form-control" id="username" placeholder="Enter email">
+                                <div v-if="errors.username" class="text-danger">
+                                    {{ errors.username }}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -32,7 +32,7 @@
 
 <script>
 import App from '@/layouts/App.vue';
-import { useForm } from '@inertiajs/inertia-vue3'
+import { router } from '@inertiajs/vue3'
 
 export default {
     components: {
@@ -41,15 +41,22 @@ export default {
     props: {
         errors: Object
     },
-    setup() {
-        const loginForm = useForm({
-            email: '',
-            password: '',
-            remember: false
-        });
 
-        return { loginForm }
-    }
+    data() {
+        return {
+        loginForm: {
+            username: null,
+            password: null,
+            remember: false,
+        },
+        }
+    },
+
+    methods: {
+        submit() {
+            router.post('/login', this.loginForm)
+        }
+    },
 }
 
 </script>
