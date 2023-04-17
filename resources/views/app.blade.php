@@ -9,6 +9,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap" rel="stylesheet">
         @vite('resources/js/app.js')
         @inertiaHead
+        <title>Stikomers Canteen</title>
     </head>
     <body>
         @inertia

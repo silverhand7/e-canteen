@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuyerLoginController;
 use App\Http\Controllers\Cashier\LoginController as CashierLoginController;
 use App\Http\Controllers\CustomOrderController;
 use App\Http\Controllers\HomeController;
@@ -22,3 +23,6 @@ Route::get(config('nova')['path'].'/redirect/order/{id}', [CustomOrderController
 Route::get(config('nova')['path'].'/redirect/order-detail/{id}', [CustomOrderController::class, 'updateTotalFromOrderDetail'])->name('order.update.total');
 
 Route::post(config()->get('nova')['path'] . '/login', [CashierLoginController::class, 'authLogin']);
+
+Route::get('/login', [BuyerLoginController::class, 'index'])->name('buyer.login');
+Route::post('/login', [BuyerLoginController::class, 'login'])->name('buyer.login.post');
