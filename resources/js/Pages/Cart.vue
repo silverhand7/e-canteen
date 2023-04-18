@@ -2,44 +2,12 @@
     <App>
         <div class="container mt-5">
             <div class="row">
-                <div v-if="subTotal != 0">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Menu</th>
-                                <th>Harga</th>
-                                <th>Qty</th>
-                                <th>Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(cart, index) in carts" :key="cart.id">
-                                <td>{{ index+1 }}</td>
-                                <td>{{ cart.name }}</td>
-                                <td>{{ cart.price.toLocaleString('en-US') }}</td>
-                                <td>{{ cart.qty }}</td>
-                                <td>{{ (cart.price * cart.qty).toLocaleString('en-US') }}</td>
-                                <td>
-                                    <Link as="button" @click="remove(cart)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></Link>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" style="text-align:right"><b>Sub Total</b></td>
-                                <td></td>
-                                <td colspan="2"><b>{{ subTotal.toLocaleString('en-US') }}</b></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="col-md-12">
+                    <CartTable :carts="this.carts" :withDeleteButton="true"></CartTable>
 
-                    <div class="text-end">
-                        <Link href="checkout" class="btn btn-success btn-lg">Proses Checkout</Link>
+                    <div v-if="this.carts.length != 0" class="text-end">
+                        <Link href="/checkout" class="btn btn-outline-success btn-lg">Proses Checkout</Link>
                     </div>
-                </div>
-
-                <div v-else>
-                    <p>Belum ada barang.</p>
                 </div>
             </div>
         </div>
@@ -48,39 +16,22 @@
 
 <script>
 import App from '@/layouts/App.vue';
-import axios from 'axios';
+import CartTable from '@/components/CartTable.vue';
+import { Link } from '@inertiajs/vue3';
 
 export default {
     components: {
-        App
+        App,
+        Link,
+        CartTable
     },
     data() {
         return {
             carts: this.$page.props.carts
         }
     },
-    computed: {
-        subTotal() {
-            let subTotal = 0;
-            this.carts.forEach((cart) => {
-                subTotal += cart.qty * cart.price;
-            })
-
-            return subTotal
-        }
-    },
     methods: {
-        remove(cart) {
-            axios.post('/delete-item-cart', {
-                id: cart.id,
-            }).then((result) => {
-                this.$page.props.cartTotal = result.data;
-                this.carts.splice(this.carts.findIndex(c => c.id == cart.id), 1);
-                // console.log(this.$page.props.cart);
-            }).catch((err) => {
-                console.log(err);
-            });
-        }
+
     }
 }
 

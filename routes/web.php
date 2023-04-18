@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BuyerCartController;
+use App\Http\Controllers\BuyerCheckoutController;
 use App\Http\Controllers\BuyerLoginController;
 use App\Http\Controllers\BuyerRegisterController;
 use App\Http\Controllers\Cashier\LoginController as CashierLoginController;
@@ -36,3 +37,5 @@ Route::post('/register', [BuyerRegisterController::class, 'register'])->name('bu
 Route::post('/add-to-cart', [BuyerCartController::class, 'addToCart'])->name('buyer.add-to-cart');
 Route::get('/cart', [BuyerCartController::class, 'index'])->name('buyer.cart');
 Route::post('/delete-item-cart', [BuyerCartController::class, 'deleteItemCart'])->name('buyer.delete-item-cart');
+
+Route::get('/checkout', [BuyerCheckoutController::class, 'index'])->name('buyer.checkout');
