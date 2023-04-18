@@ -32,4 +32,10 @@ class BuyerCartController extends Controller
 
         return app(Cart::class)->getUserCartTotal();
     }
+
+    public function deleteItemCart(Request $request)
+    {
+        Cart::find($request->id)->delete();
+        return app(Cart::class)->getUserCartTotal();
+    }
 }
