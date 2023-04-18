@@ -32,7 +32,7 @@
     </div>
 
     <div v-else>
-        <p>Belum ada barang.</p>
+        <p>Belum ada item.</p>
     </div>
 
 </template>

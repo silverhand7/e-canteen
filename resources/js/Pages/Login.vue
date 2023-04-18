@@ -8,7 +8,7 @@
                         <form @submit.prevent="submit">
                             <div class="form-group mb-3">
                                 <label for="username">Username</label>
-                                <input v-model="loginForm.username" type="text" class="form-control" id="username" placeholder="Enter email">
+                                <input v-model="loginForm.username" type="text" class="form-control" id="username" placeholder="Enter username">
                                 <div v-if="errors.username" class="text-danger">
                                     {{ errors.username }}
                                 </div>

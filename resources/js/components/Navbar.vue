@@ -12,6 +12,9 @@
                     <li class="nav-item">
                         <Link class="nav-link" aria-current="page" href="/">Home</Link>
                     </li>
+                    <li v-if="$page.props.auth" class="nav-item">
+                        <Link class="nav-link" href="/orders">Pesanan Anda</Link>
+                    </li>
                 </ul>
                 <div>
                     <div class="d-flex">
@@ -41,6 +44,7 @@ export default {
     components: {
         Link,
     },
+
     created() {
 
     }

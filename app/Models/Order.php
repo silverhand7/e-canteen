@@ -19,6 +19,10 @@ class Order extends Model
         'note'
     ];
 
+    protected $casts = [
+        'created_at' => 'date:d-m-Y H:i:s'
+    ];
+
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
