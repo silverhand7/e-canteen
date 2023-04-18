@@ -28,14 +28,29 @@
                         </tr>
                     </table>
 
-                    <p>Jika sudah melakukan transfer, upload bukti pembayaran disini:</p>
-                    <input type="file" name="" id="" class="form-control">
+                    <form @submit.prevent="submitPayment">
+                        <p>Jika sudah melakukan transfer, upload bukti pembayaran disini:</p>
+                        <div class="form-group mb-4">
+                            <input
+                                type="file"
+                                class="form-control"
+                                @input="form.proof_of_payment = $event.target.files[0]"
+                            >
+                            <div v-if="errors.proof_of_payment" class="text-danger">
+                                {{ errors.proof_of_payment }}
+                            </div>
+                        </div>
 
-                    <p class="mt-4">Klik tombol simpan pembayaran untuk memproses pesanan.</p>
+                        <div class="form-group mb-4">
+                            <label for="">Catatan tambahan (jika ada)</label>
+                            <textarea v-model="form.note" class="form-control"></textarea>
+                        </div>
 
-                    <div class="mt-4 text-end">
-                        <button class="btn btn-success btn-lg">Simpan Pembayaran</button>
-                    </div>
+                        <p class="">Klik tombol simpan pembayaran untuk memproses pesanan.</p>
+                        <div class="mt-4 text-end">
+                            <button class="btn btn-success btn-lg">Simpan Pembayaran</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
@@ -47,8 +62,23 @@
 
 import App from '@/layouts/App.vue';
 import CartTable from '../components/CartTable.vue';
+import { useForm } from '@inertiajs/vue3';
 
 export default {
+    data() {
+        return {
+            carts: this.$page.props.carts,
+            form: useForm({
+                proof_of_payment: null,
+                status: 'paid',
+                note: null,
+                order_details: this.$page.props.carts,
+            }),
+        }
+    },
+    props: {
+        errors: Object
+    },
     components: {
         App,
         CartTable
@@ -61,15 +91,15 @@ export default {
                 subTotal += cart.qty * cart.price;
             })
 
-            return subTotal
+            return subTotal;
         }
     },
 
-    data() {
-        return {
-            carts: this.$page.props.carts
+    methods: {
+        submitPayment() {
+            this.form.post('/checkout');
         }
-    },
+    }
 }
 
 </script>

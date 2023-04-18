@@ -39,3 +39,4 @@ Route::get('/cart', [BuyerCartController::class, 'index'])->name('buyer.cart');
 Route::post('/delete-item-cart', [BuyerCartController::class, 'deleteItemCart'])->name('buyer.delete-item-cart');
 
 Route::get('/checkout', [BuyerCheckoutController::class, 'index'])->name('buyer.checkout');
+Route::post('/checkout', [BuyerCheckoutController::class, 'checkout'])->name('buyer.checkout.post');

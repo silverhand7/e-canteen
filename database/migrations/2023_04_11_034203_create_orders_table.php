@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('buyer_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('cashier_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('place_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('cashier_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('place_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('proof_of_payment')->nullable();
             $table->bigInteger('total')->default(0);
             $table->string('note')->nullable();
