@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuyerCartController;
 use App\Http\Controllers\BuyerLoginController;
 use App\Http\Controllers\BuyerRegisterController;
 use App\Http\Controllers\Cashier\LoginController as CashierLoginController;
@@ -31,3 +32,5 @@ Route::post('/logout', [BuyerLoginController::class, 'logout'])->name('buyer.log
 
 Route::get('/register', [BuyerRegisterController::class, 'form'])->name('buyer.register');
 Route::post('/register', [BuyerRegisterController::class, 'register'])->name('buyer.register.post');
+
+Route::post('/add-to-cart', [BuyerCartController::class, 'addToCart'])->name('buyer.add-to-cart');

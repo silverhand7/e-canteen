@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg bg-light border">
+    <nav class="navbar navbar-expand-lg bg-light border fixed-top">
         <div class="container-fluid">
             <Link class="navbar-brand" href="/">
                 <img src="/img/image-logo.png" alt="logo" class="logo">
@@ -13,14 +13,22 @@
                         <Link class="nav-link" aria-current="page" href="/">Home</Link>
                     </li>
                 </ul>
+                <div>
+                    <div class="d-flex">
+                        <button class="btn btn-sm btn-outline-info mx-2">
+                            <i class="fa fa-cart-shopping"></i>
+                            <span>&nbsp; {{ $page.props.cartTotal }}</span>
+                        </button>
+                        <div v-if="!$page.props.auth">
+                            <Link href="/login" class="btn btn-primary btn-sm me-2">Login</Link>
+                            <Link href="/register" class="btn btn-outline-primary btn-sm">Register</Link>
+                        </div>
+                        <div v-else>
+                            <Link href="/logout" as="button" method="post" class="btn btn-danger btn-sm">Logout</Link>
+                        </div>
+                    </div>
+                </div>
 
-                <div v-if="!$page.props.auth" class="d-flex">
-                    <Link href="/login" class="btn btn-primary btn-sm me-2">Login</Link>
-                    <Link href="/register" class="btn btn-outline-primary btn-sm">Register</Link>
-                </div>
-                <div v-else>
-                    <Link href="/logout" as="button" method="post" class="btn btn-danger btn-sm">Logout</Link>
-                </div>
             </div>
         </div>
     </nav>
@@ -31,7 +39,7 @@ import { Link } from '@inertiajs/vue3'
 
 export default {
     components: {
-        Link
+        Link,
     },
     created() {
 

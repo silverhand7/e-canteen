@@ -4,9 +4,9 @@
         <div class="card-body">
             <h5 class="card-title mb-3">{{ menu.name }}</h5>
             <div class="d-flex">
-                <a href="#" class="btn btn-outline-primary btn-sm">Add to cart</a>
+                <button @click="addToCart(menu)" class="btn btn-outline-primary btn-sm">Add to cart</button>
                 &nbsp;&nbsp;
-                <a href="#" class="btn btn-primary btn-sm">Buy</a>
+                <button class="btn btn-primary btn-sm">Buy</button>
             </div>
         </div>
     </div>
@@ -14,9 +14,35 @@
 
 <script>
 
+import { router } from '@inertiajs/core';
+import axios from 'axios';
+
 export default {
     props: {
-        menu: Object
+        menu: Object,
+    },
+    created() {
+        // console.log(this.$page.props.cart);
+        // console.log(this.$page.props.auth?.id);
+    },
+    methods: {
+        addToCart(menu){
+            if (this.$page.props.auth?.id != undefined) {
+                axios.post('/add-to-cart', {
+                    menu_id: menu.id,
+                    qty: 1,
+                    buyer_id: this.$page.props.auth.id
+                }).then((result) => {
+                    this.$page.props.cartTotal = result.data;
+                    alert('Berhasil menambahkan menu kedalam keranjang');
+                    // console.log(this.$page.props.cart);
+                }).catch((err) => {
+                    console.log(err);
+                });
+            } else {
+                router.visit('/login');
+            }
+        }
     }
 }
 
