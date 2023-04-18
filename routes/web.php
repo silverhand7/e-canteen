@@ -34,3 +34,4 @@ Route::get('/register', [BuyerRegisterController::class, 'form'])->name('buyer.r
 Route::post('/register', [BuyerRegisterController::class, 'register'])->name('buyer.register.post');
 
 Route::post('/add-to-cart', [BuyerCartController::class, 'addToCart'])->name('buyer.add-to-cart');
+Route::get('/cart', [BuyerCartController::class, 'index'])->name('buyer.cart');

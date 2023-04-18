@@ -15,10 +15,10 @@
                 </ul>
                 <div>
                     <div class="d-flex">
-                        <button class="btn btn-sm btn-outline-info mx-2">
+                        <Link href="/cart" class="btn btn-sm btn-outline-info mx-2">
                             <i class="fa fa-cart-shopping"></i>
                             <span>&nbsp; {{ $page.props.cartTotal }}</span>
-                        </button>
+                        </Link>
                         <div v-if="!$page.props.auth">
                             <Link href="/login" class="btn btn-primary btn-sm me-2">Login</Link>
                             <Link href="/register" class="btn btn-outline-primary btn-sm">Register</Link>

@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class BuyerCartController extends Controller
 {
+    public function index()
+    {
+        return Inertia::render('Cart', [
+            'carts' => app(Cart::class)->getUserCart(),
+        ]);
+    }
+
     public function addToCart(Request $request)
     {
         $buyerCarts = app(Cart::class)->getUserCart();
@@ -23,6 +31,5 @@ class BuyerCartController extends Controller
         }
 
         return app(Cart::class)->getUserCartTotal();
-
     }
 }

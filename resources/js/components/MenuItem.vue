@@ -4,9 +4,9 @@
         <div class="card-body">
             <h5 class="card-title mb-3">{{ menu.name }}</h5>
             <div class="d-flex">
-                <button @click="addToCart(menu)" class="btn btn-outline-primary btn-sm">Add to cart</button>
+                <button @click="addToCart(menu)" class="btn btn-outline-primary btn-sm">Tambah ke keranjang</button>
                 &nbsp;&nbsp;
-                <button class="btn btn-primary btn-sm">Buy</button>
+
             </div>
         </div>
     </div>
@@ -34,7 +34,9 @@ export default {
                     buyer_id: this.$page.props.auth.id
                 }).then((result) => {
                     this.$page.props.cartTotal = result.data;
-                    alert('Berhasil menambahkan menu kedalam keranjang');
+                    setTimeout(() => {
+                        alert('Berhasil menambahkan menu kedalam keranjang');
+                    }, 100);
                     // console.log(this.$page.props.cart);
                 }).catch((err) => {
                     console.log(err);
