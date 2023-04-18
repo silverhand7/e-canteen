@@ -45,5 +45,5 @@ Route::middleware('auth:buyer')->group(function() {
     Route::post('/checkout', [BuyerCheckoutController::class, 'checkout'])->name('buyer.checkout.post');
 
     Route::get('/orders', [BuyerOrderController::class, 'index'])->name('buyer.orders');
-    Route::get('/orders/{id}', [BuyerOrderController::class, 'detail'])->name('buyer.orders');
+    Route::get('/orders/{id}', [BuyerOrderController::class, 'detail'])->name('buyer.orders.detail');
 });

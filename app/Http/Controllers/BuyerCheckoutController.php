@@ -54,6 +54,6 @@ class BuyerCheckoutController extends Controller
 
         Cart::where('buyer_id', auth()->guard('buyer')->user()->id)->delete();
 
-        return redirect('/')->with('success', 'Berhasil melakukan checkout, kami akan segera memproses pesanan anda.');
+        return redirect()->route('buyer.orders.detail', $order->id)->with('success', 'Berhasil melakukan checkout, kami akan segera memproses pesanan anda.');
     }
 }

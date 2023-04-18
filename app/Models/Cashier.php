@@ -15,11 +15,12 @@ class Cashier extends Authenticatable
     protected $fillable = [
         'name',
         'username',
-        'password'
+        'password',
     ];
 
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 
     protected function password(): Attribute

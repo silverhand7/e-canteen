@@ -11,6 +11,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Handleglobal\NestedForm\NestedForm;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Nova\Fields\Currency;
+use Laravel\Nova\Fields\FormData;
 use Laravel\Nova\Fields\Select;
 
 class Order extends Resource
@@ -49,7 +50,7 @@ class Order extends Resource
         return [
             ID::make()->sortable(),
             BelongsTo::make('Pembeli', 'Buyer', Buyer::class),
-            BelongsTo::make('Tempat', 'Place', Place::class),
+            BelongsTo::make('Tempat', 'Place', Place::class)->nullable(),
             Image::make('Bukti Pembayaran', 'proof_of_payment')
                 ->disk('public')
                 ->path('proof_of_payment'),
@@ -66,7 +67,12 @@ class Order extends Resource
             Currency::make('Total')->exceptOnForms(),
             BelongsTo::make('Cashier', 'Cashier', Cashier::class)->default(function(){
                 return auth()->guard('web')->user()->id;
-            })->hideFromIndex(),
+            })->dependsOn('cashier_id', function(BelongsTo $field, NovaRequest $request, FormData $formData) {
+                if (empty($field->value)) {
+                    $field->value = auth()->guard('web')->user()->id;
+                }
+            })
+            ->hideFromIndex(),
 
             HasMany::make('Order Details', 'orderDetails', OrderDetail::class),
 

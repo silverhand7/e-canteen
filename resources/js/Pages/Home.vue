@@ -1,9 +1,11 @@
 <template>
     <App>
-        <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-            <div class="container-fluid py-5">
-                <h1 class="display-6 fw-bold">Selamat Datang di Stikomers Canteen</h1>
+        <div class="banner-wrapper">
+            <div class="p-5 mb-4 bg-body-tertiary rounded-3 custom-bg">
+                <div class="container-fluid py-5">
+                </div>
             </div>
+            <h1 class="display-6 fw-bold text-white">Selamat Datang di Stikomers Canteen</h1>
         </div>
 
         <div class="container my-5">
@@ -46,6 +48,33 @@ export default {
     width: 100%;
     height: 270px;
     object-fit: cover;
+}
+
+.custom-bg {
+    background-image: url('/img/stikom-depan.jpeg');
+    background-position: center;
+    position: relative;
+    height:270px;
+}
+
+.custom-bg:before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: 0; bottom: 0;
+  background: rgba(0,0,0,.5);
+}
+
+.banner-wrapper {
+    position: relative;
+}
+
+.banner-wrapper h1{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
 }
 
 </style>
