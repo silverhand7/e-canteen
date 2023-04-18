@@ -21,4 +21,15 @@ class BuyerLoginController extends Controller
 
         return redirect('/');
     }
+
+    public function logout(Request $request)
+    {
+        auth()->guard('buyer')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('buyer.login');
+    }
 }

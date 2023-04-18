@@ -13,9 +13,13 @@
                         <Link class="nav-link" aria-current="page" href="/">Home</Link>
                     </li>
                 </ul>
-                <div class="d-flex" role="search">
+
+                <div v-if="!$page.props.auth" class="d-flex">
                     <Link href="/login" class="btn btn-primary btn-sm me-2">Login</Link>
                     <Link href="/register" class="btn btn-outline-primary btn-sm">Register</Link>
+                </div>
+                <div v-else>
+                    <Link href="/logout" method="post" class="btn btn-danger btn-sm">Logout</Link>
                 </div>
             </div>
         </div>
@@ -28,6 +32,9 @@ import { Link } from '@inertiajs/vue3'
 export default {
     components: {
         Link
+    },
+    created() {
+
     }
 }
 </script>
