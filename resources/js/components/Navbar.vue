@@ -19,7 +19,7 @@
                     <Link href="/register" class="btn btn-outline-primary btn-sm">Register</Link>
                 </div>
                 <div v-else>
-                    <Link href="/logout" method="post" class="btn btn-danger btn-sm">Logout</Link>
+                    <Link href="/logout" as="button" method="post" class="btn btn-danger btn-sm">Logout</Link>
                 </div>
             </div>
         </div>

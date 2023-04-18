@@ -17,7 +17,7 @@ export default {
         Navbar
     },
     created() {
-        console.log(this.$page.props.auth);
+
     }
 }
 
